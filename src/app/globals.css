@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================= DESIGN SYSTEM TECHNORTE =================
+   TODAS as cores ficam aqui (em formato "R G B").
+   Mude aqui e o sistema inteiro muda. Nunca escreva cor solta nas páginas. */
+:root {
+  --fundo: 8 11 10;        /* #080B0A fundo principal */
+  --fundo2: 16 22 20;      /* #101614 fundo secundário */
+  --card: 20 26 23;        /* #141A17 cards */
+  --marca: 15 143 91;      /* #0F8F5B verde principal */
+  --marca2: 22 166 106;    /* #16A66A verde secundário */
+  --marca-escuro: 11 92 61;/* #0B5C3D verde escuro */
+  --texto: 240 244 242;
+  --suave: 148 160 154;
+  --perigo: 239 68 68;
+  --aviso: 234 179 8;
+  --laranja: 249 115 22;
+}
+
+html { color-scheme: dark; }
+body {
+  background: rgb(var(--fundo));
+  color: rgb(var(--texto));
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+/* foco visível em verde, para quem navega pelo teclado */
+:focus-visible { outline: 2px solid rgb(var(--marca2)); outline-offset: 2px; }
+::selection { background: rgb(var(--marca) / .4); }
+/* barras de rolagem discretas */
+* { scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / .15) transparent; }
+
+@layer components {
+  .borda-fina { @apply border border-white/[0.07]; }
+  .campo {
+    @apply w-full min-h-[48px] rounded-xl bg-fundo2 borda-fina px-4 text-texto placeholder:text-suave/70
+           transition duration-200 focus:border-marca2 focus:outline-none focus:ring-2 focus:ring-marca2/30
+           disabled:opacity-50;
+  }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
